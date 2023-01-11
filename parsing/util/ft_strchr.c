@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 16:02:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/12/29 18:08:00 by siykim           ###   ########.fr       */
+/*   Created: 2021/11/10 12:59:32 by chanhale          #+#    #+#             */
+/*   Updated: 2022/07/17 12:10:17 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+char	*ft_p_strchr(const char *s, int c)
+{
+	char	casted_c;
 
-# include<stdio.h>
-# include<fcntl.h>
-# include<stdlib.h>
-# include<stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-
-
-#endif
+	casted_c = (char) c;
+	while (*s != casted_c && *s != '\0')
+		s++;
+	if (*s == casted_c)
+		return ((char *)s);
+	return (0);
+}
