@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unlink_tmp_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:08:30 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 01:54:20 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
+#include "../minishell.h"
 
 void	unlink_tmp_file(t_cmd_list *lists)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup_safe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 16:53:44 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/22 02:27:15 by chanhale         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/command_parse.h"
+#include "../../minishell.h"
 
 char	*ft_p_strdup_safe(const char *src)
 {

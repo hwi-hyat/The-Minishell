@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 03:00:57 by park              #+#    #+#             */
-/*   Updated: 2022/07/23 11:53:18 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/16 03:00:57 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:17 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include "../include/linkedlist.h"
-#include "../include/ft_utils.h"
+#include "../minishell.h"
 
 static int	print_non_argv_export(t_list *list)
 {
@@ -81,7 +79,8 @@ int	ft_export(char **argv, t_list *list)
 			if (ft_is_in_env(&(g_state.list), envs[0]) == 1)
 				ft_update_env(&(g_state.list), envs[0], envs[1]);
 			else
-				ft_lstadd(&(g_state.list), ft_strdup(envs[0]), ft_strdup(envs[1]));
+				ft_lstadd(&(g_state.list),
+					ft_strdup(envs[0]), ft_strdup(envs[1]));
 			free_key_value(envs);
 			idx++;
 		}

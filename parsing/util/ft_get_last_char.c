@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_last_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 19:42:27 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 02:08:20 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/command_parse.h"
+#include "../../minishell.h"
 
 char	ft_p_get_last_char(char *str)
 {

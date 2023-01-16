@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   for_exe_part.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/23 12:04:36 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
-#include "../include/ft_builtin.h"
-#include <sys/stat.h>
+#include "../minishell.h"
 
 static int	interprete_helper(char **sep, int index, t_cmd *cmd)
 {

@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 00:06:52 by jeounpar         ###   ########.fr       */
+/*   Created: 2023/01/17 00:57:54 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:57 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include "../include/linkedlist.h"
-#include <unistd.h>
-#include <stdio.h>
+#include "../minishell.h"
 
 static int	cd_helper(t_list *list, char *value, char **argv)
 {

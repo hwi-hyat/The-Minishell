@@ -6,11 +6,11 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:17:27 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/11 17:17:57 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
+#include "../minishell.h"
 
 t_cmd_list	*parse(char *str)
 {

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/23 12:08:36 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:55:27 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
-#include <stdlib.h>
-#include <errno.h>
-#include <stdio.h>
-
-int		ft_redirection(t_cmd *cmd);
-void	close_fd(t_cmd *cmd, int *stin, int *stout);
-void	exec_cmd(t_cmd *cmd, char **env);
-void	set_type(t_cmd_list *lists);
-void	free_env_list(char **env_list);
-char	**get_env_list(t_list *list);
+#include "../minishell.h"
 
 static int	check_null(t_cmd *cmd)
 {
@@ -63,7 +53,7 @@ static int	ft_exec_helper(int arr[4], t_cmd *cmd, char **env)
 	}
 	else if (arr[0] == 3)
 		printf("bash: %s: is a directory\n", cmd->argv[0]);
-	else if (arr[1] == 0 || arr[0] == 0 || arr[1]  == 5)
+	else if (arr[1] == 0 || arr[0] == 0 || arr[1] == 5)
 	{
 		exec_cmd(cmd, env);
 		close_fd(cmd, &arr[2], &arr[3]);

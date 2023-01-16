@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_env_and_signal.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:29:21 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 00:47:24 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <term.h>
-#include "../include/command_parse.h"
+#include "../minishell.h"
 
 void	signal_handler(int signo)
 {

@@ -6,13 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:56:54 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/15 14:56:55 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 00:45:49 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
+#include "../minishell.h"
 
-void	parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
+void	eliminate_empty_loaf(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
 	t_parse_token	*prev;
@@ -34,7 +34,7 @@ void	parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
 	}
 }
 
-void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst)
+void	eliminate_empty_first_loaf(t_parse_token **tok_lst)
 {
 	t_parse_token	*tok;
 
@@ -52,7 +52,7 @@ void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst)
 	}
 }
 
-void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst)
+void	rest_argv(t_parse_token *tok_lst)
 {
 	while (tok_lst != NULL)
 	{
@@ -71,16 +71,16 @@ t_parse_token	*parse_tokenize(char *str)
 		return (NULL);
 	ret->token_type = TYPE_TOKEN_CHUNK;
 	ret->string = str;
-	parse_tokenize_handle_quotaion(ret);
-	parse_env_from_token_list(ret);
-	parse_tokenize_space(ret);
-	parse_tokenize_pipeline(ret);
-	parse_tokenize_io_red(ret);
-	parse_tokenize_annihilate_empty_chunk(ret);
-	parse_tokenize_annihilate_initial_empty_chunk(&ret);
-	parse_tokenize_change_chunk_to_argv(ret);
-	parse_tokenize_merge_argv(ret);
-	parse_tokenize_annihilate_space_token(&ret);
-	parse_check_syntax_err(ret);
+	quotation(ret);
+	env_from_tok(ret);
+	space(ret);
+	pipeline(ret);
+	redirection(ret);
+	eliminate_empty_loaf(ret);
+	eliminate_empty_first_loaf(&ret);
+	rest_argv(ret);
+	collect_argv(ret);
+	eliminate_space(&ret);
+	check_syntax(ret);
 	return (ret);
 }

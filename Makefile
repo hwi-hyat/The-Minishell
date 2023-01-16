@@ -36,26 +36,26 @@ SRCS	=	./main.c \
 			./exec/ft_heredoc.c \
 			./exec/redirection.c \
 			./exec/unlink_tmp_file.c \
-			./parsing/parse_assemble_tokens.c \
-			./parsing/parse_check_syntax_err.c \
+			./parsing/assemble_tokens.c \
+			./parsing/check_syntax.c \
+			./parsing/collect_argv.c \
+			./parsing/eliminate_space.c \
+			./parsing/env_from_str.c \
+			./parsing/env_from_tok.c \
 			./parsing/parse_main.c \
-			./parsing/parse_tokenize_annihilate_space.c \
-			./parsing/parse_tokenize_env_from_str.c \
-			./parsing/parse_tokenize_env_from_tok.c \
-			./parsing/parse_tokenize_io_red.c \
-			./parsing/parse_tokenize_merge_argv.c \
-			./parsing/parse_tokenize_pipeline.c \
-			./parsing/parse_tokenize_quotation.c \
-			./parsing/parse_tokenize_space.c \
 			./parsing/parse_tokenize.c \
-			./parsing/error_management/handle_syntax_err_tok.c \
-			./parsing/error_management/parse_err_free_seq.c \
-			./parsing/t_cmd_control/t_cmd_add_argv.c \
-			./parsing/t_cmd_control/t_cmd_create.c \
-			./parsing/t_cmd_control/t_cmd_free.c \
-			./parsing/t_cmd_control/t_cmd_search.c \
-			./parsing/t_parse_token_control/t_parse_token_create.c \
-			./parsing/t_parse_token_control/t_parse_token_free.c \
+			./parsing/pipeline.c \
+			./parsing/quotation.c \
+			./parsing/redirection.c \
+			./parsing/space.c \
+			./parsing/error/handle_syntax_err_tok.c \
+			./parsing/error/parse_err_free_seq.c \
+			./parsing/control_cmd/t_cmd_add_argv.c \
+			./parsing/control_cmd/t_cmd_create.c \
+			./parsing/control_cmd/t_cmd_free.c \
+			./parsing/control_cmd/t_cmd_search.c \
+			./parsing/control_token/t_parse_token_create.c \
+			./parsing/control_token/t_parse_token_free.c \
 			./parsing/util/ft_atoi.c \
 			./parsing/util/ft_get_last_char.c \
 			./parsing/util/ft_itoa.c \

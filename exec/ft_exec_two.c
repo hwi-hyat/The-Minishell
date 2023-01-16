@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_two.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:33:32 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 14:50:34 by chanhale         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:52:14 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
-
-int		ft_redirection(t_cmd *cmd);
+#include "../minishell.h"
 
 void	set_pipe(t_cmd *cmd)
 {

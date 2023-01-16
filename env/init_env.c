@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 21:02:38 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/15 22:37:24 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:03 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "../include/linkedlist.h"
+#include "../minishell.h"
 
 int	init_env(char **env, t_env **head, t_list *list)
 {

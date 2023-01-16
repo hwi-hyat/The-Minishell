@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:55:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 21:03:30 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:52:33 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
-#include "../include/ft_utils.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <signal.h>
-
-void	signal_handler(int signo);
+#include "../minishell.h"
 
 void	heredoc_handler(int signo)
 {

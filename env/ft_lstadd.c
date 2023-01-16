@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:36:31 by park              #+#    #+#             */
-/*   Updated: 2022/07/20 23:53:33 by jeounpar         ###   ########.fr       */
+/*   Created: 2023/01/17 00:53:38 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:53:43 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
+#include "../minishell.h"
 
 void	ft_lstadd(t_list *lists, char *key, char *value)
 {

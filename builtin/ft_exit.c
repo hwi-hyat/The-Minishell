@@ -6,12 +6,11 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:43:25 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/11 18:43:26 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include <stdio.h>
+#include "../minishell.h"
 
 static int	check_num(char *str)
 {

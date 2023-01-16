@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:16:37 by park              #+#    #+#             */
-/*   Updated: 2022/07/20 23:53:55 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/15 23:16:37 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:03 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
-#include <stdlib.h>
+#include "../minishell.h"
 
 t_env	*ft_lstnew(char *key, char *value)
 {

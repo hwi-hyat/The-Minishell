@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 01:49:25 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/15 19:57:52 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:03 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "../minishell.h"
 
 int	ft_pwd(void)
 {

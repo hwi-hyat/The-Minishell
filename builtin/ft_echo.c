@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/23 11:36:06 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/15 18:37:43 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 00:57:03 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include <stdio.h>
+#include "../minishell.h"
 
 static void	echo_helper(char **argv, int idx)
 {
@@ -24,7 +23,7 @@ static void	echo_helper(char **argv, int idx)
 	}
 }
 
-static void	echo_flag_check(char **argv, int *idx, int *newline)
+static void	echo_flag_check(char **argv, int *idx, int *new_line)
 {
 	int	t;
 
@@ -41,20 +40,20 @@ static void	echo_flag_check(char **argv, int *idx, int *newline)
 			}
 			(*idx)++;
 		}
-		*newline = 1;
+		*new_line = 1;
 	}	
 }
 
 int	ft_echo(char **argv)
 {
-	int		newline;
+	int		new_line;
 	int		idx;
 
-	newline = 0;
+	new_line = 0;
 	idx = 1;
-	echo_flag_check(argv, &idx, &newline);
+	echo_flag_check(argv, &idx, &new_line);
 	echo_helper(argv, idx);
-	if (newline == 0)
+	if (new_line == 0)
 		printf("\n");
 	return (0);
 }

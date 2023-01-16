@@ -6,13 +6,11 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:15:50 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/16 23:57:47 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:43 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <term.h>
-#include "./include/command_parse.h"
-#include "./include/ft_builtin.h"
+#include "./minishell.h"
 
 int	full_of_space(char *str)
 {

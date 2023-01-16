@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_in_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:06:27 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/20 23:54:50 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
+#include "../minishell.h"
 
 int	ft_is_in_env(t_list	*list, char *key)
 {
