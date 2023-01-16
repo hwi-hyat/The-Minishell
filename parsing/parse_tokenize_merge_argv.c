@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_merge_argv.c                      :+:      :+:    :+:   */
+/*   parse_tokenize_merge_argv.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 20:30:13 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/15 14:56:46 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/15 16:14:04 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
 
-void	parse_tokenize_merge_argv_handle_env_null(t_parse_token *tok_lst);
+void	parse_tokenize_merge_argv_handle_env_null(t_parse_token *tok_lst)
+{
+	char	*str;
+
+	if (tok_lst->next->is_null != TYPE_ARGV_NULL)
+		tok_lst->is_null = TYPE_INITIAL_STATUS;
+	str = NULL;
+	if (tok_lst->original_str != NULL && tok_lst->next->original_str != NULL)
+		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->original_str);
+	else if (tok_lst->original_str != NULL
+		&& tok_lst->next->original_str == NULL)
+		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->string);
+	else if (tok_lst->original_str == NULL
+		&& tok_lst->next->original_str != NULL)
+		str = ft_p_strjoin(tok_lst->string, tok_lst->next->original_str);
+	if (str == NULL)
+		return ;
+	free(tok_lst->original_str);
+	tok_lst->original_str = str;
+}
+
 
 void	parse_tokenize_merge_argv(t_parse_token *tok_lst)
 {
@@ -37,25 +57,4 @@ void	parse_tokenize_merge_argv(t_parse_token *tok_lst)
 		else
 			tok_lst = tok_lst->next;
 	}
-}
-
-void	parse_tokenize_merge_argv_handle_env_null(t_parse_token *tok_lst)
-{
-	char	*str;
-
-	if (tok_lst->next->is_null != TYPE_ARGV_NULL)
-		tok_lst->is_null = TYPE_INITIAL_STATUS;
-	str = NULL;
-	if (tok_lst->original_str != NULL && tok_lst->next->original_str != NULL)
-		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->original_str);
-	else if (tok_lst->original_str != NULL
-		&& tok_lst->next->original_str == NULL)
-		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->string);
-	else if (tok_lst->original_str == NULL
-		&& tok_lst->next->original_str != NULL)
-		str = ft_p_strjoin(tok_lst->string, tok_lst->next->original_str);
-	if (str == NULL)
-		return ;
-	free(tok_lst->original_str);
-	tok_lst->original_str = str;
 }

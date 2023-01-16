@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_annihilate_space.c                :+:      :+:    :+:   */
+/*   parse_tokenize_annihilate_space.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 15:30:50 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/15 22:09:24 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/15 22:49:23 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
 
-void	parse_tokenize_annihilate_space_token_sub(t_parse_token *tok_lst);
+void	parse_tokenize_annihilate_space_token_sub(t_parse_token *tok_lst)
+{
+	t_parse_token	*tok;
+	t_parse_token	*prev;
+
+	if (tok_lst == NULL)
+		return ;
+	prev = tok_lst;
+	tok = tok_lst->next;
+	while (tok != NULL)
+	{
+		if (tok->token_type == TYPE_TOKEN_SPACE)
+		{
+			prev->next = tok->next;
+			free_single_t_parse_token(tok);
+			tok = prev;
+		}
+		prev = tok;
+		tok = tok->next;
+	}
+}
 
 void	parse_tokenize_annihilate_space_token(t_parse_token **tok_lst)
 {
@@ -39,26 +59,4 @@ void	parse_tokenize_annihilate_space_token(t_parse_token **tok_lst)
 		return ;
 	}
 	parse_tokenize_annihilate_space_token_sub(tok);
-}
-
-void	parse_tokenize_annihilate_space_token_sub(t_parse_token *tok_lst)
-{
-	t_parse_token	*tok;
-	t_parse_token	*prev;
-
-	if (tok_lst == NULL)
-		return ;
-	prev = tok_lst;
-	tok = tok_lst->next;
-	while (tok != NULL)
-	{
-		if (tok->token_type == TYPE_TOKEN_SPACE)
-		{
-			prev->next = tok->next;
-			free_single_t_parse_token(tok);
-			tok = prev;
-		}
-		prev = tok;
-		tok = tok->next;
-	}
 }

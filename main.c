@@ -5,19 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 13:54:06 by jeounpar          #+#    #+#             */
-/*   Updated: 2023/01/11 16:12:51 by siykim           ###   ########.fr       */
+/*   Created: 2023/01/11 16:15:50 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/16 23:57:47 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include <term.h>
 #include "./include/command_parse.h"
 #include "./include/ft_builtin.h"
 
-int		ft_exec(t_cmd_list *lists);
-void	init_env_and_signal(char **env);
-int		full_of_space(char *str);
+int	full_of_space(char *str)
+{
+	int	idx;
+
+	idx = -1;
+	while (str[++idx] != '\0')
+		if (str[idx] != ' ')
+			return (0);
+	return (1);
+}
 
 void	print_intro(void)
 {
@@ -112,15 +118,4 @@ int	main(int argc, char **argv, char **env)
 	str = NULL;
 	prompt(cmd_lst, str);
 	return (0);
-}
-
-int	full_of_space(char *str)
-{
-	int	idx;
-
-	idx = -1;
-	while (str[++idx] != '\0')
-		if (str[idx] != ' ')
-			return (0);
-	return (1);
 }

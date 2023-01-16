@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 16:53:44 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 02:08:20 by jeounpar         ###   ########.fr       */
+/*   Created: 2023/01/11 17:11:14 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/11 17:17:13 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_p_strdup(const char *src)
 {
 	int		size;
-	int		localindex;
+	int		index;
 	char	*result;
 
 	size = 0;
@@ -24,9 +24,9 @@ char	*ft_p_strdup(const char *src)
 	result = (char *)malloc((size + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	localindex = -1;
-	while (++localindex < size)
-		result[localindex] = src[localindex];
-	result[localindex] = '\0';
+	index = -1;
+	while (++index < size)
+		result[index] = src[index];
+	result[index] = '\0';
 	return (result);
 }

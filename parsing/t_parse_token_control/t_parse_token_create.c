@@ -32,7 +32,7 @@ t_parse_token	*add_t_parse_token_to_list_sub(t_parse_token **token_list,
 {
 	t_parse_token	*prev;
 
-	prev = (*token_list);
+	prev = *token_list;
 	while (prev->next != NULL && --index > 0)
 		prev = prev->next;
 	ret->next = prev->next;
@@ -58,8 +58,8 @@ t_parse_token	*add_token(t_parse_token **token_list,
 		return (NULL);
 	if (*token_list == NULL || index == 0)
 	{
-		ret->next = (*token_list);
-		(*token_list) = ret;
+		ret->next = *token_list;
+		*token_list = ret;
 		return (ret);
 	}
 	add_t_parse_token_to_list_sub(token_list, index, ret);

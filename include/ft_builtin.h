@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 21:05:01 by jeounpar         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:57:41 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int		ft_unset(char **argv, t_list *list);
 int		ft_export(char **argv, t_list *list);
 int		ft_exit(char **argv);
 int		ft_exec(t_cmd_list *lists);
+void	init_env_and_signal(char **env);
 
 #endif

@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_pipeline.c                        :+:      :+:    :+:   */
+/*   parse_tokenize_pipeline.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/15 13:49:21 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/15 13:49:22 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
-#include <stdio.h>
-
-void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst);
-void	parse_tokenize_pipeline_sub(t_parse_token *tok);
-
-void	parse_tokenize_pipeline(t_parse_token *tok_lst)
-{
-	t_parse_token	*next_tok;
-	t_parse_token	*preserve;
-
-	preserve = tok_lst;
-	while (tok_lst != NULL)
-	{
-		next_tok = tok_lst->next;
-		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
-			parse_tokenize_pipeline_sub(tok_lst);
-		tok_lst = next_tok;
-	}
-	parse_tokenize_pipeline_sep(preserve);
-}
 
 void	parse_tokenize_pipeline_sub(t_parse_token *tok)
 {
@@ -77,4 +57,20 @@ void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst)
 		}
 		tok_lst = tok_lst->next;
 	}
+}
+
+void	parse_tokenize_pipeline(t_parse_token *tok_lst)
+{
+	t_parse_token	*next_tok;
+	t_parse_token	*preserve;
+
+	preserve = tok_lst;
+	while (tok_lst != NULL)
+	{
+		next_tok = tok_lst->next;
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+			parse_tokenize_pipeline_sub(tok_lst);
+		tok_lst = next_tok;
+	}
+	parse_tokenize_pipeline_sep(preserve);
 }

@@ -1,61 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_env_val.c                                  :+:      :+:    :+:   */
+/*   parse_tokenize_env_from_tok.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 16:04:24 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/11 18:43:32 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/11 19:12:36 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
 
-void	parse_env_from_tok_sub(t_parse_token *tok, int end);
-void	parse_env_from_tok(t_parse_token *tok);
-void	*parse_env_from_tok_sub_question(t_parse_token *tok);
-char	*parse_env_from_tok_sub_set_env_null(t_parse_token *tok, char *str);
-
-void	parse_env_from_token_list(t_parse_token *tok_lst)
+void	*parse_env_from_tok_sub_question(t_parse_token *tok)
 {
-	t_parse_token	*next;
+	char	*str1;
+	char	*str2;
+	char	*str3;
 
-	while (tok_lst != NULL)
-	{
-		next = tok_lst->next;
-		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
-			parse_env_from_tok(tok_lst);
-		tok_lst = next;
-	}
+	str1 = ft_p_itoa(get_exitcode());
+	str2 = ft_p_substr(tok->string, 2, ft_p_strlen(tok->string));
+	if (str1 == NULL || str2 == NULL)
+		return (parse_safe_free_multi_str(str1, str2, NULL, NULL));
+	str3 = ft_p_strjoin(str1, str2);
+	parse_safe_free_multi_str(str1, str2, NULL, NULL);
+	if (str3 == NULL)
+		return (NULL);
+	free(tok->string);
+	tok->string = str3;
+	return (NULL);
 }
 
-void	parse_env_from_tok(t_parse_token *tok)
+char	*parse_env_from_tok_sub_set_env_null(t_parse_token *tok, char *str)
 {
-	char			**split_str;
-	t_parse_token	*next;
-	int				index;
+	char	*str1;
 
-	split_str = ft_p_split_custom(tok->string, '$');
-	if (split_str == NULL)
-		return ;
-	free (tok->string);
-	tok->string = ft_p_strdup(split_str[0]);
-	index = 0;
-	while (split_str[++index] != NULL)
-		add_token(&tok, index, tok->token_type, split_str[index]);
-	parse_safe_free_two_d_char(split_str, -1);
-	while (--index >= 0 && tok != NULL)
-	{
-		next = tok->next;
-		if (tok->string[0] == '$' && (tok->string[1] == '_'
-				|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
-				|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
-			parse_env_from_tok_sub(tok, 1);
-		else if (tok->string[0] == '$' && tok->string[1] == '?')
-			parse_env_from_tok_sub_question(tok);
-		tok = next;
-	}
+	str1 = ft_p_strjoin("$", str);
+	if (str1 == NULL)
+		return ("");
+	tok->is_null = TYPE_ARGV_NULL;
+	tok->original_str = str1;
+	return ("");
 }
 
 void	parse_env_from_tok_sub(t_parse_token *tok, int end)
@@ -87,33 +72,43 @@ void	parse_env_from_tok_sub(t_parse_token *tok, int end)
 		parse_tokenize_space_single_tok(tok);
 }
 
-void	*parse_env_from_tok_sub_question(t_parse_token *tok)
+void	parse_env_from_tok(t_parse_token *tok)
 {
-	char	*str1;
-	char	*str2;
-	char	*str3;
+	char			**split_str;
+	t_parse_token	*next;
+	int				index;
 
-	str1 = ft_p_itoa(get_exitcode());
-	str2 = ft_p_substr(tok->string, 2, ft_p_strlen(tok->string));
-	if (str1 == NULL || str2 == NULL)
-		return (parse_safe_free_multi_str(str1, str2, NULL, NULL));
-	str3 = ft_p_strjoin(str1, str2);
-	parse_safe_free_multi_str(str1, str2, NULL, NULL);
-	if (str3 == NULL)
-		return (NULL);
-	free(tok->string);
-	tok->string = str3;
-	return (NULL);
+	split_str = ft_p_split_custom(tok->string, '$');
+	if (split_str == NULL)
+		return ;
+	free (tok->string);
+	tok->string = ft_p_strdup(split_str[0]);
+	index = 0;
+	while (split_str[++index] != NULL)
+		add_token(&tok, index, tok->token_type, split_str[index]);
+	parse_safe_free_two_d_char(split_str, -1);
+	while (--index >= 0 && tok != NULL)
+	{
+		next = tok->next;
+		if (tok->string[0] == '$' && (tok->string[1] == '_'
+				|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
+				|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
+			parse_env_from_tok_sub(tok, 1);
+		else if (tok->string[0] == '$' && tok->string[1] == '?')
+			parse_env_from_tok_sub_question(tok);
+		tok = next;
+	}
 }
 
-char	*parse_env_from_tok_sub_set_env_null(t_parse_token *tok, char *str)
+void	parse_env_from_token_list(t_parse_token *tok_lst)
 {
-	char	*str1;
+	t_parse_token	*next;
 
-	str1 = ft_p_strjoin("$", str);
-	if (str1 == NULL)
-		return ("");
-	tok->is_null = TYPE_ARGV_NULL;
-	tok->original_str = str1;
-	return ("");
+	while (tok_lst != NULL)
+	{
+		next = tok_lst->next;
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+			parse_env_from_tok(tok_lst);
+		tok_lst = next;
+	}
 }

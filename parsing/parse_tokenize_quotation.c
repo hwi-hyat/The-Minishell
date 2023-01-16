@@ -11,33 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
-#include <stdio.h>
-
-char	**seperate_quote(char *str);
-
-void	parse_tokenize_handle_quotaion(t_parse_token *tok_list)
-{
-	char			**sep;
-
-	while (tok_list != NULL)
-	{
-		if (tok_list->token_type == TYPE_TOKEN_CHUNK)
-		{
-			sep = seperate_quote(tok_list->string);
-			if (sep != NULL)
-			{
-				add_token(&tok_list, 1, TYPE_TOKEN_CHUNK, sep[2]);
-				add_token(&tok_list, 1, TYPE_TOKEN_ARGV, sep[1]);
-				free(tok_list->string);
-				tok_list->string = ft_p_strdup(sep[0]);
-				parse_safe_free_two_d_char(sep, -1);
-				tok_list = tok_list->next;
-			}
-		}
-		if (tok_list != NULL)
-			tok_list = tok_list->next;
-	}
-}
 
 char	**seperate_quote_sub_single_quote(char *str, int start, int end)
 {
@@ -106,4 +79,28 @@ char	**seperate_quote(char *str)
 			return (seperate_quote_sub_double_quote(str, start, end));
 	}
 	return (NULL);
+}
+
+void	parse_tokenize_handle_quotaion(t_parse_token *tok_list)
+{
+	char			**sep;
+
+	while (tok_list != NULL)
+	{
+		if (tok_list->token_type == TYPE_TOKEN_CHUNK)
+		{
+			sep = seperate_quote(tok_list->string);
+			if (sep != NULL)
+			{
+				add_token(&tok_list, 1, TYPE_TOKEN_CHUNK, sep[2]);
+				add_token(&tok_list, 1, TYPE_TOKEN_ARGV, sep[1]);
+				free(tok_list->string);
+				tok_list->string = ft_p_strdup(sep[0]);
+				parse_safe_free_two_d_char(sep, -1);
+				tok_list = tok_list->next;
+			}
+		}
+		if (tok_list != NULL)
+			tok_list = tok_list->next;
+	}
 }

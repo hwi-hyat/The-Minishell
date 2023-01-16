@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_space.c                           :+:      :+:    :+:   */
+/*   parse_tokenize_space.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/15 13:02:29 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/15 13:50:48 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
-#include <stdio.h>
-
-void	parse_tokenize_space_sep(t_parse_token *tok_lst);
-void	parse_tokenize_annihilate_space_token_sub(t_parse_token *tok_lst);
-void	parse_tokenize_space_sub(t_parse_token *tok);
-
-void	parse_tokenize_space(t_parse_token *tok_lst)
-{
-	t_parse_token	*next_tok;
-	t_parse_token	*preserve;
-
-	preserve = tok_lst;
-	while (tok_lst != NULL)
-	{
-		next_tok = tok_lst->next;
-		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
-			parse_tokenize_space_sub(tok_lst);
-		tok_lst = next_tok;
-	}
-	parse_tokenize_space_sep(preserve);
-}
 
 void	parse_tokenize_space_sub(t_parse_token *tok)
 {
@@ -41,7 +20,6 @@ void	parse_tokenize_space_sub(t_parse_token *tok)
 	int				idx;
 
 	sep = ft_p_split_custom(tok->string, ' ');
-	idx = 0;
 	if (sep == NULL || sep[0] == NULL)
 		return ;
 	str = ft_p_strdup(sep[0]);
@@ -53,6 +31,7 @@ void	parse_tokenize_space_sub(t_parse_token *tok)
 	free(tok->string);
 	tok->string = str;
 	result = tok;
+	idx = 0;
 	while (sep[++idx] != NULL && result != NULL)
 		result = add_token(&tok, idx, TYPE_TOKEN_CHUNK, sep[idx]);
 	parse_safe_free_two_d_char(sep, -1);
@@ -106,4 +85,20 @@ void	parse_tokenize_space_sep(t_parse_token *tok_lst)
 		}
 		tok_lst = tok_lst->next;
 	}
+}
+
+void	parse_tokenize_space(t_parse_token *tok_lst)
+{
+	t_parse_token	*next_tok;
+	t_parse_token	*preserve;
+
+	preserve = tok_lst;
+	while (tok_lst != NULL)
+	{
+		next_tok = tok_lst->next;
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+			parse_tokenize_space_sub(tok_lst);
+		tok_lst = next_tok;
+	}
+	parse_tokenize_space_sep(preserve);
 }

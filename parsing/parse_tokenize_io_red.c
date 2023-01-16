@@ -12,31 +12,6 @@
 
 #include "../include/command_parse.h"
 
-void	parse_tokenize_io_red_sep(t_parse_token *tok_lst);
-void	parse_tokenize_io_red_sub(t_parse_token *tok);
-void	parse_tokenize_io_red_merge_l(t_parse_token *tok_lst);
-void	parse_tokenize_io_red_merge_r(t_parse_token *tok_lst);
-
-void	parse_tokenize_io_red(t_parse_token *tok_lst)
-{
-	t_parse_token	*next_tok;
-	t_parse_token	*preserve;
-
-	preserve = tok_lst;
-	while (tok_lst != NULL)
-	{
-		next_tok = tok_lst->next;
-		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
-		{
-			parse_tokenize_io_red_sub(tok_lst);
-		}
-		tok_lst = next_tok;
-	}
-	parse_tokenize_annihilate_empty_chunk(preserve);
-	parse_tokenize_io_red_merge_r(preserve);
-	parse_tokenize_io_red_merge_l(preserve);
-}
-
 void	parse_tokenize_io_red_merge_l(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
@@ -110,4 +85,24 @@ void	parse_tokenize_io_red_sub(t_parse_token *tok)
 		tok = tok->next;
 	}
 	parse_safe_free_two_d_char(sep, -1);
+}
+
+void	parse_tokenize_io_red(t_parse_token *tok_lst)
+{
+	t_parse_token	*next_tok;
+	t_parse_token	*preserve;
+
+	preserve = tok_lst;
+	while (tok_lst != NULL)
+	{
+		next_tok = tok_lst->next;
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+		{
+			parse_tokenize_io_red_sub(tok_lst);
+		}
+		tok_lst = next_tok;
+	}
+	parse_tokenize_annihilate_empty_chunk(preserve);
+	parse_tokenize_io_red_merge_r(preserve);
+	parse_tokenize_io_red_merge_l(preserve);
 }

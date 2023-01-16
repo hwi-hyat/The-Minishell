@@ -1,42 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize.c                                 :+:      :+:    :+:   */
+/*   parse_tokenize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 14:49:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:52:10 by chanhale         ###   ########.fr       */
+/*   Created: 2023/01/15 14:56:54 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/15 14:56:55 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
-
-void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst);
-void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst);
-
-t_parse_token	*parse_tokenize(char *cmd_string)
-{
-	t_parse_token	*ret;
-
-	ret = create_empty_t_parse_token();
-	if (ret == NULL)
-		return (NULL);
-	ret->token_type = TYPE_TOKEN_CHUNK;
-	ret->string = cmd_string;
-	parse_tokenize_handle_quotaion(ret);
-	parse_env_from_token_list(ret);
-	parse_tokenize_space(ret);
-	parse_tokenize_pipeline(ret);
-	parse_tokenize_io_red(ret);
-	parse_tokenize_annihilate_empty_chunk(ret);
-	parse_tokenize_annihilate_initial_empty_chunk(&ret);
-	parse_tokenize_change_chunk_to_argv(ret);
-	parse_tokenize_merge_argv(ret);
-	parse_tokenize_annihilate_space_token(&ret);
-	parse_check_syntax_err(ret);
-	return (ret);
-}
 
 void	parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
 {
@@ -86,4 +60,27 @@ void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst)
 			tok_lst->token_type = TYPE_TOKEN_ARGV;
 		tok_lst = tok_lst->next;
 	}
+}
+
+t_parse_token	*parse_tokenize(char *str)
+{
+	t_parse_token	*ret;
+
+	ret = create_empty_t_parse_token();
+	if (ret == NULL)
+		return (NULL);
+	ret->token_type = TYPE_TOKEN_CHUNK;
+	ret->string = str;
+	parse_tokenize_handle_quotaion(ret);
+	parse_env_from_token_list(ret);
+	parse_tokenize_space(ret);
+	parse_tokenize_pipeline(ret);
+	parse_tokenize_io_red(ret);
+	parse_tokenize_annihilate_empty_chunk(ret);
+	parse_tokenize_annihilate_initial_empty_chunk(&ret);
+	parse_tokenize_change_chunk_to_argv(ret);
+	parse_tokenize_merge_argv(ret);
+	parse_tokenize_annihilate_space_token(&ret);
+	parse_check_syntax_err(ret);
+	return (ret);
 }

@@ -37,28 +37,28 @@ t_cmd	*get_empty_t_cmd(void)
 	return (ret);
 }
 
-t_cmd	*add_empty_t_cmd_to_list(t_cmd_list *cmd_list)
+t_cmd	*add_empty_t_cmd_to_list(t_cmd_list *cmd)
 {
 	t_cmd	*new_node;
 	t_cmd	*prev_node;
 
-	if (cmd_list == NULL)
+	if (cmd == NULL)
 		return (NULL);
 	new_node = get_empty_t_cmd();
 	if (new_node == NULL)
 		return (NULL);
-	if (cmd_list->cmd_list == NULL)
+	if (cmd->cmd_list == NULL)
 	{
-		cmd_list->cmd_list = new_node;
+		cmd->cmd_list = new_node;
 		new_node->prev = NULL;
 		return (new_node);
 	}
-	prev_node = cmd_list->cmd_list;
+	prev_node = cmd->cmd_list;
 	while (prev_node -> next != NULL)
 		prev_node = prev_node->next;
 	prev_node->next = new_node;
 	new_node->prev = prev_node;
-	cmd_list->cmd_list_tail = new_node;
+	cmd->cmd_list_tail = new_node;
 	return (new_node);
 }
 
