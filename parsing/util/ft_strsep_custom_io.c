@@ -5,43 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 13:10:29 by chanhale          #+#    #+#             */
-/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
+/*   Created: 2023/01/17 01:11:37 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 01:11:38 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static size_t	get_arr_size(char const *s, char c, char d);
-static char		*make_elements(char const **s, char c, char d);
-static void		emergency_exit(char **p, char **iter_p);
-
-char	**ft_p_strsep_custom_io(char const *s, char c, char d)
-{
-	char	**result;
-	char	**iter_result;
-	char	*element;
-	size_t	arr_size;
-
-	if (s == NULL)
-		return (NULL);
-	arr_size = get_arr_size(s, c, d);
-	result = (char **)malloc(sizeof(char *) * arr_size);
-	if (result == NULL)
-		return (NULL);
-	iter_result = result;
-	while (--arr_size)
-	{
-		element = make_elements(&s, c, d);
-		if (element == NULL)
-			emergency_exit(result, iter_result);
-		if (element == NULL)
-			return (NULL);
-		*(iter_result++) = element;
-	}
-	*iter_result = NULL;
-	return (result);
-}
 
 static size_t	get_arr_size(char const *s, char c, char d)
 {
@@ -112,4 +81,31 @@ static void	emergency_exit(char **p, char **iter_p)
 	if (*iter_p != NULL)
 		free(*iter_p);
 	free (p);
+}
+
+char	**ft_p_strsep_custom_io(char const *s, char c, char d)
+{
+	char	**result;
+	char	**iter_result;
+	char	*element;
+	size_t	arr_size;
+
+	if (s == NULL)
+		return (NULL);
+	arr_size = get_arr_size(s, c, d);
+	result = (char **)malloc(sizeof(char *) * arr_size);
+	if (result == NULL)
+		return (NULL);
+	iter_result = result;
+	while (--arr_size)
+	{
+		element = make_elements(&s, c, d);
+		if (element == NULL)
+			emergency_exit(result, iter_result);
+		if (element == NULL)
+			return (NULL);
+		*(iter_result++) = element;
+	}
+	*iter_result = NULL;
+	return (result);
 }

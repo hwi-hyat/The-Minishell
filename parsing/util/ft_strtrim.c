@@ -5,31 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 14:10:28 by chanhale          #+#    #+#             */
-/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
+/*   Created: 2023/01/17 01:12:06 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 01:12:33 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	sub_func(char const *s1, char const *set, char **result, int *g_s);
-static int	sub_is_in(char c, char const *set);
-
-char	*ft_p_strtrim(char const *s1, char const *set)
+static int	sub_is_in(char c, char const *set)
 {
-	int			size;
-	char		*result;
-	char		*iter_result;
+	size_t	index;
 
-	result = NULL;
-	if (s1 == NULL || set == NULL || sub_func(s1, set, &result, &size))
-		return (NULL);
-	iter_result = result;
-	while (*s1 && sub_is_in(*(s1), set))
-		s1++;
-	while (--size)
-		*(iter_result++) = *(s1++);
-	return (result);
+	index = 0;
+	if (c == '\0')
+		return (1);
+	while (set[index])
+		if (set[index++] == c)
+			return (1);
+	return (0);
 }
 
 static int	sub_func(char const *s1, char const *set, char **result, int *g_s)
@@ -55,15 +48,19 @@ static int	sub_func(char const *s1, char const *set, char **result, int *g_s)
 	return (0);
 }
 
-static int	sub_is_in(char c, char const *set)
+char	*ft_p_strtrim(char const *s1, char const *set)
 {
-	size_t	index;
+	int			size;
+	char		*result;
+	char		*iter_result;
 
-	index = 0;
-	if (c == '\0')
-		return (1);
-	while (set[index])
-		if (set[index++] == c)
-			return (1);
-	return (0);
+	result = NULL;
+	if (s1 == NULL || set == NULL || sub_func(s1, set, &result, &size))
+		return (NULL);
+	iter_result = result;
+	while (*s1 && sub_is_in(*(s1), set))
+		s1++;
+	while (--size)
+		*(iter_result++) = *(s1++);
+	return (result);
 }

@@ -5,26 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 00:52:23 by chanhale          #+#    #+#             */
-/*   Updated: 2023/01/17 00:32:15 by siykim           ###   ########.fr       */
+/*   Created: 2023/01/17 01:08:48 by siykim            #+#    #+#             */
+/*   Updated: 2023/01/17 01:09:06 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static int	alloc_space(int nbr, char **result, char **iter);
-static void	iter(int nb, char **result);
-
-char	*ft_p_itoa(int n)
-{
-	char	*result;
-	char	*iter_result;
-
-	if (alloc_space(n, &result, &iter_result))
-		return (NULL);
-	iter(n, &iter_result);
-	return (result);
-}
 
 static int	alloc_space(int nbr, char **result, char **iter)
 {
@@ -72,4 +58,15 @@ static void	iter(int nb, char **result)
 			iter(nb / 10, result);
 		*((*result)++) = 48 + nb % 10;
 	}
+}
+
+char	*ft_p_itoa(int n)
+{
+	char	*result;
+	char	*iter_result;
+
+	if (alloc_space(n, &result, &iter_result))
+		return (NULL);
+	iter(n, &iter_result);
+	return (result);
 }

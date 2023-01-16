@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:15:50 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/17 00:32:43 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 01:15:23 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_intro(void)
 {
 	int		intro_fd;
 	int		readsize;
-	char	buffer[100];
+	char	buffer[43];
 
 	intro_fd = open("intro.txt", O_RDONLY);
 	if (intro_fd < 0)
@@ -38,7 +38,7 @@ void	print_intro(void)
 	while (1)
 	{
 		readsize = read(intro_fd, buffer, 42);
-		buffer[99] = '\0';
+		buffer[readsize] = '\0';
 		if (readsize < 1)
 		{
 			printf("\n");
