@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 01:07:11 by siykim            #+#    #+#             */
-/*   Updated: 2023/01/17 01:07:11 by siykim           ###   ########.fr       */
+/*   Updated: 2023/01/17 16:00:00 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,18 @@ void	exec_cmd(t_cmd *cmd, char **env)
 			exit(1);
 		ft_set_pipe(cmd);
 		ret = exec_builtin(cmd);
+		printf("ret %d\n", ret);
 		if (ret == -1)
-			ret = execve(cmd->argv[0], cmd->argv, env);
+			ret = execve(cmd->argv[0], cmd->argv, env); 
 		exit(ret);
 	}
 	else
 	{
 		close(cmd->fds[1]);
 		waitpid(pid, &status, 0);
+		printf("????\n");
 		g_state.exit_code = WEXITSTATUS(status);
+		printf("global exitcode updated to %d\n", g_state.exit_code);
 	}
 }
 
